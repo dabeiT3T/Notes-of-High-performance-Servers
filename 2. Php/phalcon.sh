@@ -88,11 +88,25 @@ cd /usr/local/src/cphalcon-3.4.x/build
 ./install
 # setting
 cd /usr/local/php
-cp /usr/local/src/php-7.3.10/php.ini-production lib/php.ini
-sed -i -e "907a\extension=phalcon.so" lib/php.ini
+cp /usr/local/src/php-7.3.10/php.ini-production lib/php.ini-production
+cp /usr/local/src/php-7.3.10/php.ini-development lib/php.ini
+# development
+sed -i -e "905a\zend_extension=opcache.so" lib/php.ini
+sed -i -e "905a\extension=phalcon.so" lib/php.ini
+# production & optimize
+sed -i -e "907a\zend_extension=opcache.so" lib/php.ini-production
+sed -i -e "907a\extension=phalcon.so" lib/php.ini-production
+# opcache.enable=1
+# opcache.huge_code_pages=1
+sed -i -e 's#opcache.file_cache=#opcache.file_cache=/tmp#' lib/php.ini-production
+echo 'vm.nr_hugepages=512' >> /etc/sysctl.conf
+sysctl -p
+# in production env replace php.ini with php.ini-production
+# mv lib/php.ini lib/php.ini-developement
+# mv lib/php.ini-production /lib/php.ini
+
 cp etc/php-fpm.conf.default etc/php-fpm.conf
 cp etc/php-fpm.d/www.conf.default etc/php-fpm.d/www.conf
 
 php -m
 echo "Don't forget to set the process manager and user."
-
