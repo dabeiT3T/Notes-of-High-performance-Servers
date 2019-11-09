@@ -6,9 +6,9 @@ libpng-devel freetype-devel gcc-c++ autoconf unzip pcre-devel libmcrypt-devel mh
 cd /usr/local/src
 # cmake for installing libzip
 # rc but it's ok just a tool
-wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc1/cmake-3.16.0-rc1.tar.gz
-tar -zxf cmake-3.16.0-rc1.tar.gz
-cd cmake-3.16.0-rc1
+wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc3/cmake-3.16.0-rc3.tar.gz
+tar -zxf cmake-3.16.0-rc3.tar.gz
+cd cmake-3.16.0-rc3
 ./configure
 make
 make install
@@ -40,13 +40,13 @@ tar -zxf mcrypt-1.0.3.tgz
 
 # download php
 cd /usr/local/src
-wget https://www.php.net/distributions/php-7.3.10.tar.gz
-tar -zxf php-7.3.10.tar.gz
+wget https://www.php.net/distributions/php-7.3.11.tar.gz
+tar -zxf php-7.3.11.tar.gz
 # move
-mv redis-5.0.2 php-7.3.10/ext/redis
-mv mcrypt-1.0.3 php-7.3.10/ext/mcrypt
+mv redis-5.0.2 php-7.3.11/ext/redis
+mv mcrypt-1.0.3 php-7.3.11/ext/mcrypt
 # install php
-cd php-7.3.10
+cd php-7.3.11
 rm -f configure
 ./buildconf --force
 ./configure \
@@ -88,8 +88,8 @@ cd /usr/local/src/cphalcon-3.4.x/build
 ./install
 # setting
 cd /usr/local/php
-cp /usr/local/src/php-7.3.10/php.ini-production lib/php.ini-production
-cp /usr/local/src/php-7.3.10/php.ini-development lib/php.ini
+cp /usr/local/src/php-7.3.11/php.ini-production lib/php.ini-production
+cp /usr/local/src/php-7.3.11/php.ini-development lib/php.ini
 # development
 sed -i -e "905a\zend_extension=opcache.so" lib/php.ini
 sed -i -e "905a\extension=phalcon.so" lib/php.ini
