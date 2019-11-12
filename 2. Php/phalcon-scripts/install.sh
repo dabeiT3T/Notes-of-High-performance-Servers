@@ -3,7 +3,7 @@
 HOME_PATH=`pwd`
 
 # user setting
-groupadd developer
+useradd -r developer
 useradd -G developer dabei
 useradd -G developer git
 useradd -r -G developer nginx
@@ -219,6 +219,8 @@ rm -rf phalcon
 su git -c 'git config --global user.email "git@localhost"'
 su git -c 'git config --global user.name "git"'
 su git -c 'git config --global push.default simple'
+# git no bash
+sed -r -i 's#^(git:x:[0-9]{,4}:[0-9]{,4}:[a-z]{,10}:/home/git:)(.*)#\1/usr/bin/git-shell#' /etc/passwd
 
 # show modules
 php -m
