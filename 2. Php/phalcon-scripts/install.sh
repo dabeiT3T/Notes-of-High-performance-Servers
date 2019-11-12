@@ -197,6 +197,9 @@ make install
 #ln -s /usr/local/src/phalcon-devtools/phalcon /usr/local/bin/phalcon
 # add project
 mv ${HOME_PATH}/phalcon /srv/phalcon
+mv ${HOME_PATH}/umask.sh /srv/umask.sh
+chmod 770 umask.sh
+./umask.sh
 
 # set git
 cd ~git
