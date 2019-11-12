@@ -91,11 +91,11 @@ cd /usr/local/php
 cp /usr/local/src/php-7.3.11/php.ini-production lib/php.ini-production
 cp /usr/local/src/php-7.3.11/php.ini-development lib/php.ini
 # development
-sed -i -e "905a\zend_extension=opcache.so" lib/php.ini
-sed -i -e "905a\extension=phalcon.so" lib/php.ini
+sed -i -e "905a zend_extension=opcache.so" lib/php.ini
+sed -i -e "905a extension=phalcon.so" lib/php.ini
 # production & optimize
-sed -i -e "907a\zend_extension=opcache.so" lib/php.ini-production
-sed -i -e "907a\extension=phalcon.so" lib/php.ini-production
+sed -i -e "907a zend_extension=opcache.so" lib/php.ini-production
+sed -i -e "907a extension=phalcon.so" lib/php.ini-production
 # opcache.enable=1
 # opcache.huge_code_pages=1
 sed -i -e 's#opcache.file_cache=#opcache.file_cache=/tmp#' lib/php.ini-production
@@ -110,3 +110,11 @@ cp etc/php-fpm.d/www.conf.default etc/php-fpm.d/www.conf
 
 php -m
 echo "Don't forget to set the process manager and user."
+
+# phalcon requires system reboot
+for((i=5;i>0;i--))
+do
+echo "System will reboot in ${i}s"
+sleep 1
+done
+shutdown -r now
