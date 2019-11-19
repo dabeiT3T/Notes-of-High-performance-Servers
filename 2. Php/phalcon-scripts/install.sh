@@ -223,6 +223,11 @@ rm -rf phalcon
 su git -c 'git config --global user.email "git@localhost"'
 su git -c 'git config --global user.name "git"'
 su git -c 'git config --global push.default simple'
+# git push
+cd /srv/phalcon
+su git -c 'git add .'
+su git -c 'git commit init'
+su git -c 'git push'
 # git no bash
 sed -r -i 's#^(git:x:[0-9]{,4}:[0-9]{,4}:[a-z]{,10}:/home/git:)(.*)#\1/usr/bin/git-shell#' /etc/passwd
 
