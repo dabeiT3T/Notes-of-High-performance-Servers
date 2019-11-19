@@ -171,7 +171,7 @@ let processors4PHP=processors*2
 sed -i "113s/5/${processors4PHP}/" etc/php-fpm.d/www.conf
 # set sock
 mkdir /run/php
-chown php:php /run/php
+chown php:developer /run/php
 mkdir /run/php/
 php-fpm
 chmod php:developer /run/php/php7.2-fpm.sock
@@ -198,6 +198,7 @@ make install
 # add project
 mv ${HOME_PATH}/phalcon /srv/phalcon
 mv ${HOME_PATH}/umask.sh /srv/umask.sh
+cd /srv
 chmod 770 umask.sh
 ./umask.sh
 
