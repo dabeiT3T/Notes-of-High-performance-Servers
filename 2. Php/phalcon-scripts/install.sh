@@ -169,12 +169,11 @@ cp ${HOME_PATH}/config/www.conf etc/php-fpm.d/www.conf
 let processors4PHP=processors*2
 # pm = static & pm.max_children = 2*cpu logic amount
 sed -i "113s/5/${processors4PHP}/" etc/php-fpm.d/www.conf
-# set sock
+# set sock, but disappear after rebooting
 mkdir /run/php
 chown php:developer /run/php
-mkdir /run/php/
 php-fpm
-chmod php:developer /run/php/php7.2-fpm.sock
+chown php:developer /run/php/php7.2-fpm.sock
 
 # composer
 cd ~
@@ -226,7 +225,7 @@ su git -c 'git config --global push.default simple'
 # git push
 cd /srv/phalcon
 su git -c 'git add .'
-su git -c 'git commit init'
+su git -c 'git commit -m init'
 su git -c 'git push'
 # git no bash
 sed -r -i 's#^(git:x:[0-9]{,4}:[0-9]{,4}:[a-z]{,10}:/home/git:)(.*)#\1/usr/bin/git-shell#' /etc/passwd
