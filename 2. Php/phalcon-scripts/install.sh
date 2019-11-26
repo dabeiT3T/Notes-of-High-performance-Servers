@@ -14,7 +14,7 @@ passwd dabei
 su git -c 'ssh-keygen'
 
 # yum
-yum install -y yum install -y libxml2-devel openssl openssl-devel bzip2-devel curl-devel libjpeg-devel \
+yum install -y libxml2-devel openssl openssl-devel bzip2-devel curl-devel libjpeg-devel \
 libpng-devel freetype-devel gcc-c++ autoconf unzip pcre-devel libmcrypt-devel mhash-devel wget
 
 # PCRE
@@ -169,7 +169,7 @@ cp ${HOME_PATH}/config/www.conf etc/php-fpm.d/www.conf
 let processors4PHP=processors*2
 # pm = static & pm.max_children = 2*cpu logic amount
 sed -i "113s/5/${processors4PHP}/" etc/php-fpm.d/www.conf
-# set sock, but disappear after rebooting
+# set sock, but disappeared after rebooting
 mkdir /run/php
 chown php:developer /run/php
 php-fpm
