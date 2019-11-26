@@ -43,9 +43,9 @@ tar -zxf openssl-1.1.1d.tar.gz
 
 # nginx
 cd /usr/local/src
-wget https://nginx.org/download/nginx-1.17.5.tar.gz
-tar -zxf nginx-1.17.5.tar.gz
-cd nginx-1.17.5
+wget https://nginx.org/download/nginx-1.17.6.tar.gz
+tar -zxf nginx-1.17.6.tar.gz
+cd nginx-1.17.6
 ./configure \
 --sbin-path=/usr/local/nginx/nginx \
 --conf-path=/usr/local/nginx/nginx.conf \
@@ -71,9 +71,9 @@ sed -i -e '3d' nginx.conf -e "2a worker_processes  ${processors};" nginx.conf
 cd /usr/local/src
 # cmake for installing libzip
 # rc but it's ok just a tool
-wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc3/cmake-3.16.0-rc3.tar.gz
-tar -zxf cmake-3.16.0-rc3.tar.gz
-cd cmake-3.16.0-rc3
+wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc4/cmake-3.16.0-rc4.tar.gz
+tar -zxf cmake-3.16.0-rc4.tar.gz
+cd cmake-3.16.0-rc4
 ./configure
 make
 make install
@@ -97,21 +97,21 @@ ldconfig -v
 # pecl
 cd /usr/local/src
 # redis
-wget https://pecl.php.net/get/redis-5.0.2.tgz
-tar -zxf redis-5.0.2.tgz
+wget https://pecl.php.net/get/redis-5.1.1.tgz
+tar -zxf redis-5.1.1.tgz
 # mcrypt
 wget https://pecl.php.net/get/mcrypt-1.0.3.tgz
 tar -zxf mcrypt-1.0.3.tgz
 
 # download php
 cd /usr/local/src
-wget https://www.php.net/distributions/php-7.3.11.tar.gz
-tar -zxf php-7.3.11.tar.gz
+wget https://www.php.net/distributions/php-7.3.12.tar.gz
+tar -zxf php-7.3.12.tar.gz
 # move
-mv redis-5.0.2 php-7.3.11/ext/redis
-mv mcrypt-1.0.3 php-7.3.11/ext/mcrypt
+mv redis-5.1.1 php-7.3.12/ext/redis
+mv mcrypt-1.0.3 php-7.3.12/ext/mcrypt
 # install php
-cd php-7.3.11
+cd php-7.3.12
 rm -f configure
 ./buildconf --force
 ./configure \
