@@ -12,7 +12,7 @@ class Module extends Injectable
     {
         $loader = new Loader;
         $loader->registerNamespaces([
-            'System'    => __DIR__
+            'System'    => __DIR__,
         ])->register();
     }
 

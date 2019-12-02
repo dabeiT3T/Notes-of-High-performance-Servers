@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\Model;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Dispatcher;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
@@ -47,13 +48,25 @@ $di->setShared('db', function () {
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname'   => $config->database->dbname,
-        'charset'  => $config->database->charset
+        'charset'  => $config->database->charset,
+        'options'  => [
+            PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8mb4',
+            PDO::ATTR_PERSISTENT            => true,
+            PDO::ATTR_DEFAULT_FETCH_MODE    => PDO::FETCH_ASSOC,
+        ],
     ];
 
     $connection = new $class($params);
 
     return $connection;
 });
+
+/**
+ * Model::create() skip null columns
+ */
+Model::setup([
+    'notNullValidations'    => false,
+]);
 
 /**
  * Start the session the first time some component request the session service
