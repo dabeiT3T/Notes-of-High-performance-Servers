@@ -137,7 +137,8 @@ rm -f configure
 --with-jpeg-dir \
 --with-openssl \
 --with-gettext \
---enable-redis
+--enable-redis \
+--with-freetype-dir
 make
 make install
 # link
