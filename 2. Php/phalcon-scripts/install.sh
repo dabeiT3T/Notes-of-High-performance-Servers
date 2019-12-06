@@ -94,6 +94,15 @@ echo '' >> /etc/ld.so.conf
 echo -e '/usr/local/lib64\n/usr/local/lib\n/usr/lib\n/usr/lib64' >> /etc/ld.so.conf
 ldconfig -v
 
+# freetype
+cd /usr/local/src
+wget https://download.savannah.gnu.org/releases/freetype/freetype-2.9.1.tar.gz
+tar -zxf freetype-2.9.1.tar.gz
+cd freetype-2.9.1
+./configure --prefix=/usr/local/freetype
+make
+make install
+
 # pecl
 cd /usr/local/src
 # redis
@@ -138,7 +147,7 @@ rm -f configure
 --with-openssl \
 --with-gettext \
 --enable-redis \
---with-freetype-dir
+--with-freetype-dir=/usr/local/freetype
 make
 make install
 # link
